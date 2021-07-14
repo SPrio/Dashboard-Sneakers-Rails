@@ -1,1 +1,1 @@
-$redis = Redis::Namespace.new("dashboard:#{RAILS.env}", redis: Redis.new)
+$redis = Redis::Namespace.new("dashboard:#{Rails.env}", redis: Redis.new)
