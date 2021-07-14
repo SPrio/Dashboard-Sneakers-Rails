@@ -15,13 +15,13 @@ namespace :rabbitmq do
     ch = conn.create_channel
 
     # get or create exchange
-    x = ch.fanout("blog.posts")
+    event = ch.default_exchange
 
     # get or create queue
-    queue = ch.queue("dashboard.posts", durable: true)
+    queue = ch.queue("test_rabbitmq", :durable => true)
 
     # bind queue to exchange
-    queue.bind("blog.posts")
+    # queue.bind(event)
 
     conn.close
   end
