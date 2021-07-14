@@ -15,13 +15,13 @@ namespace :rabbitmq do
     ch = conn.create_channel
 
     # get or create exchange
-    event = ch.default_exchange
+    event = ch.direct('test_exchange')
 
     # get or create queue
-    queue = ch.queue("test_rabbitmq", :durable => true)
+    queue = ch.queue("test_queue", :durable => true)
 
     # bind queue to exchange
-    # queue.bind(event)
+    queue.bind(event, routing_key: "test_queue")
 
     conn.close
   end
